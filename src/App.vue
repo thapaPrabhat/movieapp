@@ -17,7 +17,6 @@ export default {
     Nav, Footer
   },
   created() {
-    this.$store.dispatch("setApiKey");
     this.$store.dispatch("genre/getGenre");
   }
 };

@@ -11,11 +11,4 @@ export default new Vuex.Store({
   modules: {
     genre, movie, tv, actor
   },
-  actions: {
-    setApiKey() {
-      // todo remove auth details from here 
-      window.axios.defaults.headers.common["Authorization"] =
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MGNjYzc4OWFmNzhhNDc3Njc1NTk5ODU0YWM4ZjlkNyIsInN1YiI6IjVlYzBmMTBmM2QzNTU3MDAxZWU0ZjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KSSzrkmaeWJVQFRUqIjh-Cr_2CVTN7rPHZv3o-6W0KM";
-    }
-  }
 })

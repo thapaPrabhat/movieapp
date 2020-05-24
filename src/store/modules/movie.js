@@ -4,6 +4,7 @@
 const state = () => ({
   popular: [],
   nowPlaying: [],
+  movie: {}
 })
 
 // getters
@@ -13,6 +14,9 @@ const getters = {
   },
   nowPlaying(state) {
     return state.nowPlaying
+  },
+  movie(state) {
+    return state.movie
   }
 }
 
@@ -25,6 +29,13 @@ const actions = {
         commit('setMovie', {data: res.data.results, type: type})
       });
 
+  },
+  getMovieDetail({commit}, id){
+    window.axios
+      .get("https://api.themoviedb.org/3/movie/"+ id +'?append_to_response=credits,videos,images')
+      .then(res => {
+        commit('setMovieDetail', res.data)
+      });
   }
 }
 
@@ -35,7 +46,11 @@ const mutations = {
       state.popular = data
     else if (type == 'now_playing')
       state.nowPlaying = data
+  },
+  setMovieDetail(state, movie){
+    state.movie = movie
   }
+
 }
 
 export default {

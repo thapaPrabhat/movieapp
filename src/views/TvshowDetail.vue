@@ -3,10 +3,10 @@
     <div class="border-b border-gray-800">
       <div class="mx-auto px-4 py-16 flex flex-col md:flex-row">
         <div class="flex-none">
-          <img :src="'https://image.tmdb.org/t/p/w400' + movie.poster_path" alt="poster" />
+          <img :src="'https://image.tmdb.org/t/p/w400' + tvShow.poster_path" alt="poster" />
         </div>
         <div class="md:ml-24">
-          <h2 class="text-4xl mt-4 md:mt-0 font-semibold">{{ movie.title }}</h2>
+          <h2 class="text-4xl mt-4 md:mt-0 font-semibold">{{ tvShow.title }}</h2>
           <div class="flex flex-wrap items-center text-gray-400 text-sm">
             <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24">
               <g data-name="Layer 2">
@@ -16,20 +16,20 @@
                 />
               </g>
             </svg>
-            <span class="ml-1">{{ movie.vote_average }}</span>
+            <span class="ml-1">{{ tvShow.vote_average }}</span>
             <span class="mx-2">|</span>
-            <span>{{ movie.release_date }}</span>
+            <span>{{ tvShow.release_date }}</span>
             <span class="mx-2">|</span>
-            <span>{{ Array.prototype.map.call(movie.genres, function(item) { return item.name; }).join(", ") }}</span>
+            <span>{{ Array.prototype.map.call(tvShow.genres, function(item) { return item.name; }).join(", ") }}</span>
           </div>
 
-          <p class="text-gray-300 mt-8">{{ movie.overview }}</p>
+          <p class="text-gray-300 mt-8">{{ tvShow.overview }}</p>
 
           <div class="mt-12">
             <!-- todo put a link to view all crew members.. -->
             <h4 class="text-white font-semibold">Featured Crew</h4>
             <div class="flex mt-4">
-              <div class="mr-8" v-for="crew in movie.credits.crew.slice(0,4)" :key="crew.credit_id">
+              <div class="mr-8" v-for="crew in tvShow.credits.crew.slice(0,4)" :key="crew.credit_id">
                 <div>{{ crew.name }}</div>
                 <div class="text-sm text-gray-400">{{ crew.job }}</div>
               </div>
@@ -37,7 +37,7 @@
           </div>
 
           <div x-data="{ isOpen: false }">
-            <div class="mt-12" v-if="movie.videos.results.length">
+            <div class="mt-12" v-if="tvShow.videos.results.length">
               <button
                 @click="showTrailer = true"
                 class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
@@ -72,7 +72,7 @@
                       >
                         <iframe
                           class="responsive-iframe absolute top-0 left-0 w-full h-full"
-                          :src="'https://www.youtube.com/embed/'+ movie.videos.results[0].key"
+                          :src="'https://www.youtube.com/embed/'+ tvShow.videos.results[0].key"
                           style="border:0;"
                           allow="autoplay; encrypted-media"
                           allowfullscreen
@@ -87,7 +87,7 @@
         </div>
       </div>
     </div>
-    <!-- end movie-info -->
+    <!-- end show-info -->
 
     <div class="border-b border-gray-800">
       <div class="container mx-auto px-4 py-16">
@@ -98,7 +98,7 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:grid-cols-5 gap-4"
         >
-          <div class="mt-8" v-for="cast in movie.credits.cast.slice(0,5)" :key="cast.credit_id">
+          <div class="mt-8" v-for="cast in tvShow.credits.cast.slice(0,5)" :key="cast.credit_id">
             <router-link :to="'/actor/'+cast.id">
               <img
                 :src="'https://image.tmdb.org/t/p/w200' + cast.profile_path"
@@ -114,12 +114,12 @@
         </div>
       </div>
     </div>
-    <!-- end movie-cast -->
+    <!-- end show-cast -->
 
     <div class="container mx-auto px-4 py-16">
       <h2 class="text-4xl font-semibold">Images</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div class="mt-8" v-for="image in movie.images.backdrops.slice(0,6)" :key="image.id">
+        <div class="mt-8" v-for="image in tvShow.images.backdrops.slice(0,6)" :key="image.id">
           <a href="#">
             <img
               :src="'https://image.tmdb.org/t/p/w500/'+image.file_path"
@@ -151,14 +151,14 @@
         </div>
       </div>
     </div>
-    <!-- end movie-images -->
+    <!-- end show-images -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "MovieDetail",
+  name: "TvshowDetail",
   data() {
     return {
       isOpen: false,
@@ -167,7 +167,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("movie/getMovieDetail", this.$route.params.id);
+    this.$store.dispatch("tv/getShowDetail", this.$route.params.id);
 
     document.body.addEventListener("keyup", e => {
       if (e.keyCode === 27) {
@@ -179,8 +179,8 @@ export default {
   },
   methods: {},
   computed: {
-    ...mapGetters("movie", ["movie"]),
-    ...mapGetters("genre", ["genres"])
+    ...mapGetters("tv", ["tvShow"]),
+    ...mapGetters("genre", ["tvShowGenres"])
   }
 };
 </script>

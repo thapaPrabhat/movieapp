@@ -3,6 +3,12 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 
+import Actor from '../views/Actor.vue'
+import ActorDetail from '../views/ActorDetail.vue'
+
+import Tvshow from '../views/Tvshow.vue'
+import TvshowDetail from '../views/TvshowDetail.vue'
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -12,9 +18,29 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/movie',
+    path: '/movie/:id',
     name: 'MovieDetail',
     component: MovieDetail
+  },
+  {
+    path: '/tv-shows',
+    name: 'Tvshow',
+    component: Tvshow
+  },
+  {
+    path: '/tv-show/:id',
+    name: 'TvshowDetail',
+    component: TvshowDetail
+  },
+  {
+    path: '/actors',
+    name: 'Actor',
+    component: Actor
+  },
+  {
+    path: '/actor/:id',
+    name: 'ActorDetail',
+    component: ActorDetail
   },
   {
     path: '/about',
