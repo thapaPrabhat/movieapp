@@ -22,3 +22,7 @@ npm run lint
 
 ### Project Idea and UI Credits
 See [drehimself/laravel-movies-example](https://github.com/drehimself/laravel-movies-example).
+
+
+### API and Data source
+[TMDb](https://www.themoviedb.org/documentation/api)
