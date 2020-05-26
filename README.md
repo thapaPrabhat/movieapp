@@ -20,5 +20,5 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Project Idea and UI Credits
+See [drehimself/laravel-movies-example](https://github.com/drehimself/laravel-movies-example).
