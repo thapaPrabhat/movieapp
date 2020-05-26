@@ -2,7 +2,7 @@
   <div>
     <div class="border-b border-gray-800">
       <div class="mx-auto px-4 py-16 flex flex-col md:flex-row">
-        <div class="flex-none">
+        <div class="flex-none" v-if="movie.poster_path">
           <img :src="'https://image.tmdb.org/t/p/w400' + movie.poster_path" alt="poster" />
         </div>
         <div class="md:ml-24">
@@ -20,7 +20,9 @@
             <span class="mx-2">|</span>
             <span>{{ movie.release_date }}</span>
             <span class="mx-2">|</span>
-            <span>{{ Array.prototype.map.call(movie.genres, function(item) { return item.name; }).join(", ") }}</span>
+            <span
+              v-if="movie.genres"
+            >{{ Array.prototype.map.call(movie.genres, function(item) { return item.name; }).join(", ") }}</span>
           </div>
 
           <p class="text-gray-300 mt-8">{{ movie.overview }}</p>
@@ -28,7 +30,7 @@
           <div class="mt-12">
             <!-- todo put a link to view all crew members.. -->
             <h4 class="text-white font-semibold">Featured Crew</h4>
-            <div class="flex mt-4">
+            <div class="flex mt-4" v-if="movie.credits">
               <div class="mr-8" v-for="crew in movie.credits.crew.slice(0,4)" :key="crew.credit_id">
                 <div>{{ crew.name }}</div>
                 <div class="text-sm text-gray-400">{{ crew.job }}</div>
@@ -36,8 +38,8 @@
             </div>
           </div>
 
-          <div x-data="{ isOpen: false }">
-            <div class="mt-12" v-if="movie.videos.results.length">
+          <div>
+            <div class="mt-12" v-if="movie.videos && movie.videos.results.length">
               <button
                 @click="showTrailer = true"
                 class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
@@ -97,6 +99,7 @@
         </div>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:grid-cols-5 gap-4"
+          v-if="movie.credits"
         >
           <div class="mt-8" v-for="cast in movie.credits.cast.slice(0,5)" :key="cast.credit_id">
             <router-link :to="'/actor/'+cast.id">
@@ -118,7 +121,7 @@
 
     <div class="container mx-auto px-4 py-16">
       <h2 class="text-4xl font-semibold">Images</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" v-if="movie.images">
         <div class="mt-8" v-for="image in movie.images.backdrops.slice(0,6)" :key="image.id">
           <a href="#">
             <img
