@@ -80,7 +80,7 @@
           <h4 class="font-semibold mt-12">Known For</h4>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            <div class="mt-4" v-for="movie in credits.slice(0,5)" :key="movie.id">
+            <div class="mt-4" v-for="movie in credits.slice(0,5)" :key="movie.credit_id">
               <router-link :to="`/movie/${movie.id}`">
                 <img
                   :src="`https://image.tmdb.org/t/p/w400${movie.poster_path}`"
@@ -103,7 +103,7 @@
       <div class="container mx-auto px-4 py-16">
         <h2 class="text-4xl font-semibold">Credits</h2>
         <ul class="list-disc leading-loose pl-5 mt-8">
-          <li v-for="credit in credits" :key="credit.id">
+          <li v-for="credit in credits" :key="credit.credit_id">
             {{credit.release_date ? credit.release_date : credit.first_air_date | yearFormat}} &middot;
             <strong>
               <router-link
@@ -111,7 +111,7 @@
                 class="hover:underline"
               >{{credit.title ? credit.title : credit.name}}</router-link>
             </strong>
-            <span v-if="credit.character">as {{credit.character}}</span>
+            <span v-if="credit.character">&nbsp; as {{credit.character}}</span>
           </li>
         </ul>
       </div>
