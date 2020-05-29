@@ -1,4 +1,5 @@
 // import axios from 'axios'
+import router from '../../router'
 
 // initial state
 const state = () => ({
@@ -24,30 +25,34 @@ const getters = {
 const actions = {
   getShows({ commit }, type) {
     window.axios
-      .get("https://api.themoviedb.org/3/tv/"+ type)
+      .get("https://api.themoviedb.org/3/tv/" + type)
       .then(res => {
-        commit('setShow', {data: res.data.results, type: type})
+        commit('setShow', { data: res.data.results, type: type })
       });
 
   },
-  getShowDetail({commit}, id){
+  getShowDetail({ commit }, id) {
     window.axios
-      .get("https://api.themoviedb.org/3/tv/"+ id +'?append_to_response=credits,videos,images')
+      .get("https://api.themoviedb.org/3/tv/" + id + '?append_to_response=credits,videos,images')
       .then(res => {
         commit('settvDetail', res.data)
+      })
+      .catch((err) => {
+        if (err.response.status)
+          router.push({ name: 'NotFound' })
       });
   }
 }
 
 // mutations
 const mutations = {
-  setShow(state, {data, type}) {
-    if(type == 'popular')
+  setShow(state, { data, type }) {
+    if (type == 'popular')
       state.popular = data
     else if (type == 'top_rated')
       state.topRated = data
   },
-  settvDetail(state, tv){
+  settvDetail(state, tv) {
     state.tvShow = tv
   }
 }

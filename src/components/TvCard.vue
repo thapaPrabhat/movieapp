@@ -1,8 +1,8 @@
 <template>
-  <div class="md:flex content-center flex-wrap -mx-2 p-3">
+  <div class="md:flex content-center flex-wrap -mx-2">
     <div class="flex flex-wrap">
       <div
-        class="md:flex px-2 py-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4"
+        class="md:flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4"
         v-for="show in shows"
         :key="show.id"
       >

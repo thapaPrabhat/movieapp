@@ -1,4 +1,5 @@
 // import axios from 'axios'
+import router from '../../router'
 
 // initial state
 const state = () => ({
@@ -38,9 +39,12 @@ const actions = {
   },
   getActorDetail({ commit }, id) {
     window.axios
-      .get("https://api.themoviedb.org/3/person/" + id+ "?append_to_response=external_ids,combined_credits")
+      .get("https://api.themoviedb.org/3/person/" + id + "?append_to_response=external_ids,combined_credits")
       .then(res => {
         commit('setActorDetail', res.data)
+      }).catch((err) => {
+        if (err.response.status)
+          router.push({ name: 'NotFound' })
       });
   }
 }

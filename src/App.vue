@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="bg-gray-900 text-white min-h-screen">
     <Nav />
-    <div class="bg-gray-900 text-white min-h-screen">
-      <router-view />
+    <div class="container mx-auto">
+      <router-view :key="$route.path"/>
     </div>
     <Footer></Footer>
   </div>
