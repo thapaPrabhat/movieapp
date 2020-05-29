@@ -38,7 +38,7 @@ const actions = {
         commit('settvDetail', res.data)
       })
       .catch((err) => {
-        if (err.response.status)
+        if (err.response.status == 404)
           router.push({ name: 'NotFound' })
       });
   }
