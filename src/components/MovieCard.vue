@@ -9,7 +9,7 @@
         <div class="md:flex-1 p-2 rounded shadow-lg">
           <router-link :to="'/movie/'+movie.id">
             <img
-              class="w-full"
+              class="w-full hover:opacity-75 transition ease-in-out duration-150"
               :src="'https://image.tmdb.org/t/p/w300'+movie.poster_path"
               :alt="movie.title"
             />

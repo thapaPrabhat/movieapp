@@ -1,13 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import MovieDetail from '../views/MovieDetail.vue'
 
-import Actor from '../views/Actor.vue'
-import ActorDetail from '../views/ActorDetail.vue'
-
-import Tvshow from '../views/Tvshow.vue'
-import TvshowDetail from '../views/TvshowDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -20,51 +14,42 @@ const routes = [
   {
     path: '/movie/:id',
     name: 'MovieDetail',
-    component: MovieDetail
+    component: () => import(/* webpackChunkName: "MovieDetail" */ '../views/MovieDetail.vue')
   },
   {
     path: '/tv-shows',
     name: 'Tvshow',
-    component: Tvshow
+    component: () => import(/* webpackChunkName: "Tvshow" */ '../views/Tvshow.vue')
   },
   {
     path: '/tv-show/:id',
     name: 'TvshowDetail',
-    component: TvshowDetail
+    component: () => import(/* webpackChunkName: "TvshowDetail" */ '../views/TvshowDetail.vue')
   },
   {
     path: '/actors',
     name: 'Actor',
-    component: Actor
+    component: () => import(/* webpackChunkName: "Actor" */ '../views/Actor.vue')
   },
   {
     path: '/actor/:id',
     name: 'ActorDetail',
-    component: ActorDetail
+    component: () => import(/* webpackChunkName: "ActorDetail" */ '../views/ActorDetail.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/not-found',
+    path: '/404',
+    alias: '*',
     name: 'NotFound',
-    component: () => import(/* webpackChunkName: "about" */ '../components/404.vue')
-  },
-  {
-    path: '*',
-    name: '404',
-    component: () => import(/* webpackChunkName: "about" */ '../components/404.vue')
+    component: () => import(/* webpackChunkName: "404" */ '../views/NotFound.vue')
   }
 ]
 
 const router = new VueRouter({
   routes,
   // mode : 'history'
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

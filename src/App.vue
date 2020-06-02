@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-900 text-white min-h-screen">
     <Nav />
-    <div class="container mx-auto">
+    <div class="container mx-auto mt-24 md:mt-16">
       <router-view :key="$route.path" />
     </div>
     <!-- set progressbar -->
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "./components/TheNavigation";
+import Footer from "./components/TheFooter";
 
 export default {
   components: {

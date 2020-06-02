@@ -9,7 +9,7 @@
         <div class="md:flex-1 p-2 rounded shadow-lg">
           <router-link :to="'/tv-show/'+show.id">
             <img
-              class="w-full"
+              class="w-full hover:opacity-75 transition ease-in-out duration-150"
               :src="'https://image.tmdb.org/t/p/w300'+show.poster_path"
               :alt="show.title"
             />

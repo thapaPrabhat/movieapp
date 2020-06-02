@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-gray-800">
+  <header class="bg-gray-800 fixed w-full z-10 top-0">
     <div
       class="container mx-auto sm:flex sm:justify-between sm:items-center md:justify-start sm:px-4 sm:py-3"
     >
@@ -218,4 +218,7 @@ export default {
     opacity: 0;
   }
 }
+  a.router-link-exact-active{
+    color: white;
+  }
 </style>
