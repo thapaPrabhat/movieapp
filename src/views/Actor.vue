@@ -8,7 +8,7 @@
       infinite-scroll-distance="1"
     >
       <div class="actor mt-8" v-for="actor in uniqueActors" :key="actor.id">
-        <router-link :to="'/actor/'+actor.id">
+        <router-link :to="{name : 'ActorDetail', params: {id: actor.id}}">
           <img
             :src="'https://image.tmdb.org/t/p/w235_and_h235_face'+actor.profile_path"
             alt="profile image"
@@ -16,7 +16,7 @@
           />
         </router-link>
         <div class="mt-2">
-          <router-link :to="'/actor/'+actor.id" class="text-lg hover:text-gray-300">{{ actor.name }}</router-link>
+          <router-link :to="{name : 'ActorDetail', params: {id: actor.id}}" class="text-lg hover:text-gray-300">{{ actor.name }}</router-link>
           <div class="text-sm truncate text-gray-400">
             <span
               v-for="known in actor.known_for"

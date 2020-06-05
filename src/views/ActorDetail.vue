@@ -81,7 +81,7 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             <div class="mt-4" v-for="movie in credits.slice(0,5)" :key="movie.credit_id">
-              <router-link :to="`/movie/${movie.id}`">
+              <router-link :to="{ name: movie.media_type == 'person' ? 'ActorDetail' : (movie.media_type == 'tv' ? 'TvshowDetail' : 'MovieDetail'), params: { id: movie.id }}">
                 <img
                   :src="`https://image.tmdb.org/t/p/w400${movie.poster_path}`"
                   alt="poster"
@@ -89,7 +89,7 @@
                 />
               </router-link>
               <router-link
-                :to="`/movie/${movie.id}`"
+                :to="{ name: movie.media_type == 'person' ? 'ActorDetail' : (movie.media_type == 'tv' ? 'TvshowDetail' : 'MovieDetail'), params: { id: movie.id }}"
                 class="text-sm leading-normal block text-gray-400 hover:text-white mt-1"
               >{{movie.title ? movie.title : movie.name}}</router-link>
             </div>
@@ -107,7 +107,7 @@
             {{credit.release_date ? credit.release_date : credit.first_air_date | yearFormat}} &middot;
             <strong>
               <router-link
-                :to="`/movie/${credit.id}`"
+                :to="{ name: credit.media_type == 'person' ? 'ActorDetail' : (credit.media_type == 'tv' ? 'TvshowDetail' : 'MovieDetail'), params: { id: credit.id }}"
                 class="hover:underline"
               >{{credit.title ? credit.title : credit.name}}</router-link>
             </strong>

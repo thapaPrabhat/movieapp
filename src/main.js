@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import moment from 'moment'
 import VueProgressBar from 'vue-progressbar'
-import VueAnalytics from 'vue-ua'
+import VueAnalytics from 'vue-analytics';
 
 import './assets/styles/index.css';
 
@@ -35,16 +35,12 @@ Vue.filter('age', function(value) {
     return moment().diff(value, 'years')
   }
 })
-//Google analytics scripts
+
+//Google analytics
 Vue.use(VueAnalytics, {
-  appName: 'Vue Movie App',
-  // [Required] The version of your app.
-  appVersion: 'V1',
-  // [Required] Your Google Analytics tracking ID.
-  trackingId: 'UA-114580823-3',
-  // If you're using vue-router, pass the router instance here.
-  vueRouter: router,
-})
+  id: 'UA-114580823-3',
+  router,
+});
 
 new Vue({
   router,

@@ -7,7 +7,7 @@
         :key="movie.id"
       >
         <div class="md:flex-1 p-2 rounded shadow-lg">
-          <router-link :to="'/movie/'+movie.id">
+          <router-link :to="{name : 'MovieDetail', params : {id : movie.id}}">
             <img
               class="w-full hover:opacity-75 transition ease-in-out duration-150"
               :src="'https://image.tmdb.org/t/p/w300'+movie.poster_path"
@@ -16,7 +16,7 @@
           </router-link>
           <div class="px-4 pt-4">
             <p class="text-lg mb-2">
-              <router-link :to="'/movie/'+movie.id">{{ movie.title }}</router-link>
+              <router-link :to="{name : 'MovieDetail', params : {id : movie.id}}">{{ movie.title }}</router-link>
             </p>
             <p class="text-gray-700 text-sm flex">
               <svg
