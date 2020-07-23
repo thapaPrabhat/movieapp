@@ -1,6 +1,10 @@
 # Vue Movie app
 A Simple vue application to display Movies, TV Shows and Actors Information.
 
+![GitHub issues](https://img.shields.io/github/issues/thapaprabhat/movieapp?style=for-the-badge)
+![David](https://img.shields.io/david/thapaprabhat/movieapp?style=for-the-badge)
+
+
 # Features
 
 - List 20 Popular and Now Playing Movies
