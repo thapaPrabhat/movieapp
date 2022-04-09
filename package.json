@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "core-js": "^3.6.4",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "tailwindcss": "^1.9.6",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
